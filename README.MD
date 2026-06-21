@@ -1,4 +1,4 @@
-# YOLOv8n Iranian Cheque Detection — Augmentation Ablation Study
+# YOLOv8n Iranian Cheque Detection Augmentation Ablation Study
 
 A controlled ablation study measuring how data augmentation intensity affects YOLOv8n's ability to detect **Iranian bank cheques** under severe data scarcity (177 images). Four training configurations — minimal, light, heavy, and a proposed balanced augmentation recipe — are compared head-to-head under otherwise identical training conditions.
 
