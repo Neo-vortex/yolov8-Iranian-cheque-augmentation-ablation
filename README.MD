@@ -177,9 +177,6 @@ All four variants share: YOLOv8n backbone, 120-epoch budget, 640×640 input, bat
 
 177 annotated images of Iranian bank cheques, single class (`cheque`). The dataset and resulting model are scoped specifically to the standardized Iranian cheque layout (Persian/Farsi printed fields, Jalali-calendar date box, fixed Central Bank of Iran format) — not a generic, country-agnostic cheque detector. The raw dataset is **not included** in this repository due to the sensitivity of financial document images. Reach out if you have a legitimate research use case.
 
-## Raw Results
-
-Full per-epoch training/validation curves, hyperparameters, and best-epoch metrics for all four variants are available in [`results/ablation_results.json`](results/ablation_results.json) for anyone who wants to reproduce the figures or run further analysis.
 
 ## Citation
 
