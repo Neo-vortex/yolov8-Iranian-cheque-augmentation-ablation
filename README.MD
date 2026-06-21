@@ -30,7 +30,6 @@ Augmentation recipes shipped with most detection frameworks (mosaic, copy-paste,
 ```
 .
 ├── paper/
-│   ├── cheque_augmentation_ablation.tex   # IEEE conference-format source
 │   └── cheque_augmentation_ablation.pdf   # compiled paper
 ├── figures/
 │   ├── fig1_metric_comparison_bar.png
@@ -40,21 +39,12 @@ Augmentation recipes shipped with most detection frameworks (mosaic, copy-paste,
 │   ├── fig5_generalization_gap.png
 │   └── fig6_precision_recall_scatter.png
 ├── models/
-│   ├── variant_A_baseline/
-│   │   ├── best.pt
-│   │   └── best_float16.tflite
-│   ├── variant_B_aug_light/
-│   │   ├── best.pt
-│   │   └── best_float16.tflite
-│   ├── variant_C_aug_heavy/
-│   │   ├── best.pt
-│   │   └── best_float16.tflite
-│   └── variant_D_aug_balanced/
-│       ├── best.pt
-│       └── best_float16.tflite
-├── results/
-│   └── ablation_results.json              # full per-epoch training curves + metrics
+│   ├── variant_A_baseline.tflite
+│   ├── variant_B_aug_light.tflite
+│   ├── variant_C_aug_heavy.tflite
+│   ├── variant_D_aug_balanced.tflite
 └── README.md
+
 ```
 
 ## Models
@@ -120,7 +110,12 @@ best_idx = np.argmax(confidences)
 print(f"Best confidence: {confidences[best_idx]:.4f}")
 ```
 
-### Flutter / Dart (`tflite_flutter`)
+### Flutter / Dart
+
+There are two ways to integrate these models into a Flutter app:
+
+- **Recommended:** use the official [`ultralytics_yolo`](https://pub.dev/packages/ultralytics_yolo) plugin, which handles preprocessing, decoding, and NMS for you on both Android and iOS. See **[FLUTTER_GUIDE.md](FLUTTER_GUIDE.md)** for the full integration walkthrough, including the iOS Core ML export step and an AGPL-3.0 licensing note worth reading before shipping commercially.
+- **Manual / dependency-free:** decode the raw TFLite output yourself with `tflite_flutter`, shown below. Use this if you want to avoid the AGPL-3.0 dependency or need full control over postprocessing.
 
 ```yaml
 # pubspec.yaml
@@ -219,8 +214,8 @@ If you use this work, please cite:
 
 ```bibtex
 @unpublished{cheque_aug_ablation,
-  title  = {Augmentation Intensity vs. Generalization in YOLOv8n for Cheque Detection Under Severe Data Scarcity},
-  author = {Your Name},
+  title  = {Augmentation Intensity vs. Generalization in YOLOv8n for Iranian Cheque Detection Under Severe Data Scarcity},
+  author = {Mohamadreza Nakhleh},
   year   = {2026},
   note   = {Independent research}
 }
@@ -228,8 +223,8 @@ If you use this work, please cite:
 
 ## License
 
-Specify your license here (e.g., MIT, Apache 2.0, or "All rights reserved" if you don't want to license model weights/code for reuse yet).
+MIT
 
 ## Author
 
-Your Name — Independent Researcher
+Mohamadreza Nakhleh — Independent Researcher
