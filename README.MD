@@ -51,39 +51,12 @@ Augmentation recipes shipped with most detection frameworks (mosaic, copy-paste,
 
 Each variant's trained weights are provided in two formats:
 
-- **`best.pt`** — native Ultralytics/PyTorch checkpoint
 - **`best_float16.tflite`** — float16-quantized TFLite export, for mobile/on-device inference
 
 `variant_D_aug_balanced` is the recommended model for production use based on this study's results.
 
 ## Usage
 
-### Python (PyTorch / `best.pt`)
-
-```python
-from ultralytics import YOLO
-import cv2
-
-model = YOLO("models/variant_D_aug_balanced/best.pt")
-
-image_path = "path/to/iranian_cheque.jpg"
-results = model.predict(image_path, conf=0.5)
-
-# Get the highest-confidence cheque bounding box
-boxes = results[0].boxes
-if len(boxes) > 0:
-    best_box = boxes[boxes.conf.argmax()]
-    x1, y1, x2, y2 = best_box.xyxy[0].tolist()
-    confidence = best_box.conf.item()
-    print(f"Cheque detected with {confidence:.2%} confidence at [{x1:.0f}, {y1:.0f}, {x2:.0f}, {y2:.0f}]")
-
-    # Crop just the cheque region for downstream OCR
-    img = cv2.imread(image_path)
-    cropped = img[int(y1):int(y2), int(x1):int(x2)]
-    cv2.imwrite("cheque_cropped.jpg", cropped)
-else:
-    print("No cheque detected.")
-```
 
 ### Python (TFLite / `best_float16.tflite`)
 
